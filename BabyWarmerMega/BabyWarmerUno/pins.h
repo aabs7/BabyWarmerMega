@@ -12,8 +12,8 @@
 #define DDR(x) (*(&x - 1))      /* address of data direction register of port x */
 
 //For Heater Control /
-#define HEATER_PORT PORTD
-#define HEATER_PIN PIND3
+#define HEATER_PORT PORTB
+#define HEATER_PIN PINB5
 
 //Buzzer
 #define BUZZER_PORT PORTH
@@ -21,11 +21,11 @@
 
 //LED
 
-#define SENSOR_FAIL_PORT PORTH //
-#define SENSOR_FAIL_PIN PINH3     
+#define SENSOR_FAIL_PORT PORTE //
+#define SENSOR_FAIL_PIN PINE3     
 
-#define HEATER_FAIL_PORT PORTE
-#define HEATER_FAIL_PIN PINE3
+#define HEATER_FAIL_PORT PORTH
+#define HEATER_FAIL_PIN PINH3
 
 #define TS_HIGH_PORT PORTL
 #define TS_HIGH_PIN PINL1

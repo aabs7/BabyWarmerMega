@@ -23,6 +23,8 @@
 
 #include <avr/io.h>
 
+extern volatile uint8_t spiTimerCheck;
+
 void spi_init() {
 	// SPI Enable, Master mode
 	SPCR |= (1 << SPE) | (1 << MSTR)| (1<<SPR1);
@@ -47,7 +49,10 @@ void spiSendByte (char databyte)
 	// Copy data into the SPI data register
 	SPDR = databyte;
 	// Wait until transfer is complete
-	while (!(SPSR & (1 << SPIF)));
+	spiTimerCheck = 0;
+	//wait 1 second in while loop.
+	while ((!(SPSR & (1 << SPIF))) && spiTimerCheck <= 1){};
+		
 }
 
 

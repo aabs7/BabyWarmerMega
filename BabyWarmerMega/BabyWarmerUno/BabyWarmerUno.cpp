@@ -37,8 +37,8 @@
 #define BAUD_PRESCALE (((F_CPU / (BAUD * 16UL))) - 1)
 
 
-#define AIR_SENSOR 1
-#define SKIN_SENSOR 0
+#define AIR_SENSOR 0
+#define SKIN_SENSOR 1
 
 
 void init_devices();
@@ -53,7 +53,9 @@ void displayOFF();
 void displayBABY();
 void titititi();
 void titi();
+void displaySkinAirSet();
 
+void(* resetFunc) (void) = 0;
 //monitoring for
 bool startMonitor = false;
 int second = 0;
@@ -62,6 +64,7 @@ int second = 0;
 //TIMER FOR DISPLAY UPDATE
 Timerr timerr;
 volatile bool displayUpdate = false;
+volatile uint8_t spiTimerCheck = 0;
 
 //FAN HEATER BUZZER
 Controls controls;
@@ -73,15 +76,14 @@ bool buzzer_timer = false;
 Adafruit_MAX31865 maxAir;
 Adafruit_MAX31865 maxSkin;
 
-float skin_temperature = 0.0;
-float air_temperature = 0.0;
-float set_temperature = 35.0;
+volatile float skin_temperature = 0.0;
+volatile float air_temperature = 0.0;
+float set_temperature = 36.5;
 float set_temperature_copy = set_temperature;
 float pre_heat_max_temp = 30.0;
 
 volatile int display_count = 0;
 volatile int display_count_max = 2;
-int optimumTemp = 35;
 
 //DISPLAY
 max7219 max1;
@@ -107,15 +109,12 @@ uint32_t countpreheat = 0;
 
 int main(void)
 {	
-	
-	
-	init_devices();
-	_delay_ms(1000);
-	
 	initUART0();
-	//titi();
+	init_devices();
+	
+	titi();
 	//initialize local variables.
-	sendToDisplay(air_temperature,skin_temperature, set_temperature);
+	//sendToDisplay(air_temperature,skin_temperature, set_temperature);
 	
 	float temperature_heater_off = 0.0;
 	float temperature_heater_on = 0.0;
@@ -124,44 +123,97 @@ int main(void)
 	bool clear_display = false;
 	bool set_temp_display = false;
 	
-	UART0TransmitString("On\r\n");
-	while(!preHeat){
-		
-		if(displayUpdate){
-			clear_display = !clear_display;
-			
+	
+	//*********************************************************************************//
+	
+	//check Sensor and display sensor fail if failure of sensor
+ 	max1.MAX7219_clearDisplay();
+ 	max2.MAX7219_clearDisplay();
+ 	maxSkin.begin(SKIN_SENSOR);
+ 	maxAir.begin(AIR_SENSOR);
+ 	skin_temperature = maxSkin.temperature(100.0,430.0);
+ 	air_temperature = maxAir.temperature(100.0,430.0);
+	 
+	//check the sensor conditions, loop the program if it doesn't detect the air sensor and skin sensor//
+ 	while(skin_temperature <= 0.0 || skin_temperature >= 50 ){
+ 		if(displayUpdate){
 			displayUpdate = false;
-			maxSkin.begin(SKIN_SENSOR);
-			skin_temperature = maxSkin.temperature(100.0,430.0);
 			max1.MAX7219_init(REINITIALIZE);
 			max2.MAX7219_init(REINITIALIZE);
-			displayPreHeat();
-			if(clear_display) {
-				max2.MAX7219_clearDisplay();
-				//max1.MAX7219_clearDisplay();
-				} else {
-				sendToDisplayBelow(skin_temperature);
-			}
-			if(skin_temperature >= pre_heat_max_temp) {
-				controls.stopHeater();
-				preHeat = true;
-				titititi();
-			}
-			else if(skin_temperature < pre_heat_max_temp) {
-				controls.startHeater();
-			}
+			displaySensFail();
+			maxSkin.begin(SKIN_SENSOR);
+			skin_temperature = maxSkin.temperature(100.0,430.0);
 		}
-		
 		else{
 			asm volatile ("nop");
 		}
-		
-	}
+ 	}
+
+ 	while(air_temperature <= 0.0 || air_temperature >= 50){
+ 		if(displayUpdate){
+			displayUpdate = false;
+ 			max1.MAX7219_init(REINITIALIZE);
+ 			max2.MAX7219_init(REINITIALIZE);
+ 			displaySensFail();
+ 			maxAir.begin(AIR_SENSOR);
+ 			air_temperature = maxAir.temperature(100.0,430.0);
+ 		}
+ 		else{
+ 			asm volatile ("nop");
+ 		}
+ 	}
+	////////// The sensor detection ends here ///////////////////
+	
+	
+	
+	//*************************************************************//
+	/// After this start preheat condition of baby warmer //////
+ 	while(!preHeat){
+ 		
+ 		if(displayUpdate){
+ 			clear_display = !clear_display;
+ 			
+ 			displayUpdate = false;
+ 			maxSkin.begin(SKIN_SENSOR);
+ 			skin_temperature = maxSkin.temperature(100.0,430.0);
+ 			max1.MAX7219_init(REINITIALIZE);
+ 			max2.MAX7219_init(REINITIALIZE);
+ 			displayPreHeat();
+ 			if(clear_display) {
+ 				max2.MAX7219_clearDisplay();
+ 				//max1.MAX7219_clearDisplay();
+ 				} else {
+ 				sendToDisplayBelow(skin_temperature);
+ 			}
+ 			if(skin_temperature >= pre_heat_max_temp) {
+ 				controls.stopHeater();
+ 				preHeat = true;
+ 				titititi();
+ 			}
+ 			else if(skin_temperature < pre_heat_max_temp) {
+ 				controls.startHeater();
+ 			}
+ 		}
+ 		
+ 		else{
+ 			asm volatile ("nop");
+ 		}
+ 		
+ 	}
+
+	///The preheat condition of baby warmer ends here ///////////
+	
+	//clear display
+	//note that for clearDisplay to clear screen, mode decode register should be in 0xff form or the display shows tttttttt 
+
+	max1.MAX7219_clearDisplay();
+	max2.MAX7219_clearDisplay();
+	_delay_ms(100);
+	
 	while(1)
 	{
 		check();
 		if(displayUpdate) {
-			//UART0TransmitString("On\r\n");
 			
 			//spi for temperature pt100
 			maxAir.begin(AIR_SENSOR); //these are init
@@ -201,8 +253,10 @@ int main(void)
 			temperature_heater_on = set_temperature - 0.2f;
 			
 			if(skin_temperature >= temperature_heater_off) {
+				Led.led_do(HEATER_FAIL_LED,0);
 				controls.stopHeater();
 				}else if(skin_temperature <= temperature_heater_on) {
+				Led.led_do(HEATER_FAIL_LED,1);
 				controls.startHeater();
 			}
 			
@@ -217,9 +271,7 @@ int main(void)
 
 
 void init_devices() {
-	
-	//_delay_ms(1000);	
-	
+		
 	sei();
 	
 	//heater and buzzer
@@ -227,34 +279,30 @@ void init_devices() {
 
 	//led
 	Led.led_init();
-	//Led.led_all(true);
+	
 	//for time
 	timerr.setTimerNum(1);
 	timerr.setCompareInterrupt();
 	timerr.startCustomTimer(200);
 	
-	//start buzzer
-	
-	//for pt100
-	//maxAir.begin(1);
-	//maxSkin.begin(0);
-	
-	//skin_temperature = maxSkin.temperature(100.0, 430.0);
-	//air_temperature = maxAir.temperature(100.0, 430.0);
-	
-	//for display
-	//max1.MAX7219_init();
-	//Led.led_all(true);
 	max1.MAX7219_set(0,4,4);
-	
 	_delay_ms(10);
 	max2.MAX7219_set(1, 4, 4);
 	_delay_ms(10);
 	
+	//UART0TransmitString("inside adking \r\n");
 	max1.MAX7219_init(FIRSTINITIALIZE);
 	_delay_ms(10);
 	max2.MAX7219_init(FIRSTINITIALIZE);
 	_delay_ms(10);
+	//reinitialize in case of spi hang
+	max1.MAX7219_init(FIRSTINITIALIZE);
+	_delay_ms(10);
+	max2.MAX7219_init(FIRSTINITIALIZE);
+	_delay_ms(10);
+	
+	//UART0TransmitString("out of adking \r\n");
+	
 	max1.MAX7219_clearDisplay();
 	_delay_ms(30);
 	max2.MAX7219_clearDisplay();
@@ -263,6 +311,7 @@ void init_devices() {
 
 ISR(TIMER1_COMPA_vect) {
 	TCNT1 = 0;
+	spiTimerCheck++;
 	if(startMonitor) {
 		second++;
 	}
@@ -275,26 +324,21 @@ ISR(TIMER1_COMPA_vect) {
 
 void check() {
 	
-	if(skin_temperature >= (set_temperature + 0.2f) ) {
+	
+	if((skin_temperature > 37.2) |(skin_temperature < 36.50) | (air_temperature>39.00) ) {
 		if(!startMonitor) {
-			//	UART0TransmitString("true\t");
 			start_buzzer = true;
 		}
 		
 		if(stop_buzzer && !startMonitor) {
-			//UART0TransmitString("stop \t");
 			startMonitor = true;
 			second = 0;
 			stop_buzzer = false;
 			start_buzzer = false;
-			//controls.stopBuzzer();
 		}
-		//UART0TransmitString("\r\n");
-		Led.led_do(TS_HIGH_LED, 1);
-		//Led.led_do(TA_HIGH_LED, 1);
+
 	}
 	else {
-		//	UART0TransmitString("else\r\n");
 		controls.stopBuzzer();
 		start_buzzer = false;
 		Led.led_do(TS_HIGH_LED, 0);
@@ -309,7 +353,7 @@ void check() {
 		second = 0;
 	}
 	
-	if(air_temperature > 37) {
+	if(air_temperature > 39) {
 		//controls.startBuzzer();
 		//Led.led_do(TS_HIGH_LED, 1);
 		Led.led_do(TA_HIGH_LED, 1);
@@ -320,7 +364,6 @@ void check() {
 	
 	//buzzer stop button
 	if(bit_is_clear(BUZZER_STOP_BUTTON_PORT, BUZZER_STOP_BUTTON_PIN) && !buzzer_stop_pressed ) {
-		//UART0TransmitString("\r\n bhoot \r\n");
 		controls.stopBuzzer();
 		stop_buzzer = true;
 		buzzer_stop_pressed = true;
@@ -336,6 +379,9 @@ void check() {
 		
 		if(button_change) {
 			set_temperature_copy += 0.1f;
+			if(set_temperature_copy >= 37.2){
+				set_temperature_copy = 37.2;
+			}
 		}
 		set_up_pressed = true;
 	}
@@ -350,6 +396,10 @@ void check() {
 		
 		if(button_change) {
 			set_temperature_copy -= 0.1f;
+			//limit set temperature below range
+			if(set_temperature_copy <= 36.5){
+				set_temperature_copy = 36.5;
+			}
 		}
 		
 		set_down_pressed= true;
@@ -377,22 +427,25 @@ void check() {
 }
 
 void sendToDisplay(float air, float skin, float set) {
-	max1.MAX7219_writeData(MAX7219_MODE_DECODE,0xFF);
+	max1.MAX7219_writeData(MAX7219_MODE_DECODE,0xF3);
+	max1.MAX7219_writeData(3,das);
 	max1.MAX7219_writeData(8, air / 10);
 	max1.MAX7219_writeData(6, ((int)air % 10) | 0b10000000);
 	
 	max1.MAX7219_writeData(2, (int)(air * 10) % 10);
 	
+	max1.MAX7219_writeData(4,das);
 	max1.MAX7219_writeData(7, skin / 10);
 	max1.MAX7219_writeData(5, ((int)skin % 10) | 0b10000000);
 	
 	max1.MAX7219_writeData(1, (int)(skin * 10) % 10);
 	
-	max2.MAX7219_writeData(MAX7219_MODE_DECODE,0xFF);
+	max2.MAX7219_writeData(MAX7219_MODE_DECODE,0xA2);
 	//max2.MAX7219_writeData(1, set / 10);
 	
 	//max2.MAX7219_writeData(5, (int)set % 10);
 	//max2.MAX7219_writeData(4, (int)(set*10) % 10);
+	max2.MAX7219_writeData(4,das);
 	max2.MAX7219_writeData(6, (set / 10));
 	
 	max2.MAX7219_writeData(8, ((int)set % 10)| 0b10000000);
@@ -401,11 +454,13 @@ void sendToDisplay(float air, float skin, float set) {
 
 
 void sendToDisplayBelow(float temp){
-	max2.MAX7219_writeData(MAX7219_MODE_DECODE,0xFF);
+	max2.MAX7219_writeData(MAX7219_MODE_DECODE,0xA2);
+	max2.MAX7219_writeData(4,das);
 	max2.MAX7219_writeData(6, (temp / 10));
 	max2.MAX7219_writeData(8, ((int)temp % 10)| 0b10000000);
 	max2.MAX7219_writeData(2, (int)(temp*10) % 10);
 }
+
 
 void displaySensFail()
 {
@@ -501,7 +556,27 @@ void displayBABY(){
 }
 // Order of right and left 4-7 segment matrix registers.
 // 3 7 5 1      4 8 6 2
-
+// 4,6,8,2
+void displaySkinAirSet(){
+	max1.MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
+	//first 4-7segment display from left to right
+	max1.MAX7219_writeData(3,S);
+	max1.MAX7219_writeData(7,H);
+	max1.MAX7219_writeData(5,I);
+	max1.MAX7219_writeData(1,N);
+	
+	//second 4-7 segment display from left to right
+	max1.MAX7219_writeData(4,das);
+	max1.MAX7219_writeData(8,A);
+	max1.MAX7219_writeData(6,I);
+	max1.MAX7219_writeData(2,R);
+	
+	max2.MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
+	max2.MAX7219_writeData(1,das);
+	max2.MAX7219_writeData(6,S);
+	max2.MAX7219_writeData(8,E);
+	max2.MAX7219_writeData(2,t);
+}
 
 void titititi(){
 	controls.startBuzzer();
@@ -518,6 +593,7 @@ void titititi(){
 	_delay_ms(100);
 	controls.startBuzzer();
 	_delay_ms(100);
+	controls.stopBuzzer();
 }
 
 void titi(){

@@ -59,6 +59,16 @@ void max7219::MAX7219_writeData(char data_register, char data)
 
 void max7219::MAX7219_clearDisplay()
 {
+	max7219::MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
+	max7219::MAX7219_writeData(1,das);
+	max7219::MAX7219_writeData(2,das);
+	max7219::MAX7219_writeData(3,das);
+	max7219::MAX7219_writeData(4,das);
+	max7219::MAX7219_writeData(5,das);
+	max7219::MAX7219_writeData(6,das);
+	max7219::MAX7219_writeData(7,das);
+	max7219::MAX7219_writeData(8,das);
+	/*
 	//char i = digitsInUse;
 	char i = max7219::digits1 + max7219::digits2 ;
 	// Loop until 0, but don't run for zero
@@ -66,6 +76,7 @@ void max7219::MAX7219_clearDisplay()
 		// Set each display in use to blank
 		max7219::MAX7219_writeData(i, MAX7219_CHAR_BLANK);
 	} while (--i);
+	*/
 }
 
 void max7219::MAX7219_displayNumber(volatile long number)
