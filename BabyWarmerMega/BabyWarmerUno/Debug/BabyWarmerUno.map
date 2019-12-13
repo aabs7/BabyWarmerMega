@@ -83,13 +83,11 @@ Discarded input sections
  .text._Z10displayOFFv
                 0x00000000       0x6e BabyWarmerUno.o
  .text._Z11displayBABYv
-                0x00000000       0x6e BabyWarmerUno.o
+                0x00000000       0x62 BabyWarmerUno.o
  .text._Z17displaySkinAirSetv
                 0x00000000       0xaa BabyWarmerUno.o
  .bss.countpreheat
                 0x00000000        0x4 BabyWarmerUno.o
- .bss.emergencyAlert
-                0x00000000        0x1 BabyWarmerUno.o
  .bss.buzzer_count
                 0x00000000        0x2 BabyWarmerUno.o
  .bss.resetFunc
@@ -517,7 +515,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1a96
+.text           0x00000000     0x1e26
  *(.vectors)
  .vectors       0x00000000       0xe4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -637,225 +635,243 @@ END GROUP
                 0x00000148                . = ALIGN (0x2)
  *(.text.*)
  .text._Z12init_devicesv
-                0x00000148       0xfc BabyWarmerUno.o
+                0x00000148      0x100 BabyWarmerUno.o
                 0x00000148                _Z12init_devicesv
  .text.__vector_17
-                0x00000244       0x86 BabyWarmerUno.o
-                0x00000244                __vector_17
+                0x00000248       0x86 BabyWarmerUno.o
+                0x00000248                __vector_17
  .text._Z13sendToDisplayfff
-                0x000002ca      0x1b2 BabyWarmerUno.o
-                0x000002ca                _Z13sendToDisplayfff
+                0x000002ce      0x1c0 BabyWarmerUno.o
+                0x000002ce                _Z13sendToDisplayfff
+ .text._Z16checkTemperaturev
+                0x0000048e       0xe2 BabyWarmerUno.o
+                0x0000048e                _Z16checkTemperaturev
  .text._Z18sendToDisplayBelowf
-                0x0000047c       0x96 BabyWarmerUno.o
-                0x0000047c                _Z18sendToDisplayBelowf
+                0x00000570       0xa0 BabyWarmerUno.o
+                0x00000570                _Z18sendToDisplayBelowf
  .text._Z15displaySensFailv
-                0x00000512       0x5c BabyWarmerUno.o
-                0x00000512                _Z15displaySensFailv
+                0x00000610       0x6e BabyWarmerUno.o
+                0x00000610                _Z15displaySensFailv
  .text._Z21displaySetTemperaturev
-                0x0000056e       0x5c BabyWarmerUno.o
-                0x0000056e                _Z21displaySetTemperaturev
+                0x0000067e       0x6e BabyWarmerUno.o
+                0x0000067e                _Z21displaySetTemperaturev
  .text._Z14displayPreHeatv
-                0x000005ca       0x5c BabyWarmerUno.o
-                0x000005ca                _Z14displayPreHeatv
+                0x000006ec       0x6a BabyWarmerUno.o
+                0x000006ec                _Z14displayPreHeatv
+ .text._Z15displayHighTempv
+                0x00000756       0x5c BabyWarmerUno.o
+                0x00000756                _Z15displayHighTempv
+ .text._Z14displayLowTempv
+                0x000007b2       0x5c BabyWarmerUno.o
+                0x000007b2                _Z14displayLowTempv
+ .text._Z14displayHighAirv
+                0x0000080e       0x5c BabyWarmerUno.o
+                0x0000080e                _Z14displayHighAirv
+ .text._Z23displayOnTempOutOfRangefff
+                0x0000086a       0x64 BabyWarmerUno.o
+                0x0000086a                _Z23displayOnTempOutOfRangefff
+ .text._Z14displayPwrFailv
+                0x000008ce       0x5c BabyWarmerUno.o
+                0x000008ce                _Z14displayPwrFailv
  .text._Z8titititiv
-                0x00000626       0xb0 BabyWarmerUno.o
-                0x00000626                _Z8titititiv
+                0x0000092a       0xb0 BabyWarmerUno.o
+                0x0000092a                _Z8titititiv
  .text._Z4titiv
-                0x000006d6       0x62 BabyWarmerUno.o
-                0x000006d6                _Z4titiv
+                0x000009da       0x62 BabyWarmerUno.o
+                0x000009da                _Z4titiv
  .text._Z5checkv
-                0x00000738      0x2da BabyWarmerUno.o
-                0x00000738                _Z5checkv
- .text.main     0x00000a12      0x410 BabyWarmerUno.o
-                0x00000a12                main
+                0x00000a3c      0x2fe BabyWarmerUno.o
+                0x00000a3c                _Z5checkv
+ .text.main     0x00000d3a      0x476 BabyWarmerUno.o
+                0x00000d3a                main
  .text._GLOBAL__sub_I_resetFunc
-                0x00000e22       0x32 BabyWarmerUno.o
+                0x000011b0       0x32 BabyWarmerUno.o
  .text._ZN8Controls12initControlsEv
-                0x00000e54       0x10 Controls.o
-                0x00000e54                _ZN8Controls12initControlsEv
+                0x000011e2       0x12 Controls.o
+                0x000011e2                _ZN8Controls12initControlsEv
  .text._ZN8Controls11startHeaterEv
-                0x00000e64        0x4 Controls.o
-                0x00000e64                _ZN8Controls11startHeaterEv
+                0x000011f4        0x4 Controls.o
+                0x000011f4                _ZN8Controls11startHeaterEv
  .text._ZN8Controls10stopHeaterEv
-                0x00000e68        0x4 Controls.o
-                0x00000e68                _ZN8Controls10stopHeaterEv
+                0x000011f8        0x4 Controls.o
+                0x000011f8                _ZN8Controls10stopHeaterEv
  .text._ZN8Controls11startBuzzerEv
-                0x00000e6c        0xc Controls.o
-                0x00000e6c                _ZN8Controls11startBuzzerEv
+                0x000011fc        0xc Controls.o
+                0x000011fc                _ZN8Controls11startBuzzerEv
  .text._ZN8Controls10stopBuzzerEv
-                0x00000e78        0xc Controls.o
-                0x00000e78                _ZN8Controls10stopBuzzerEv
+                0x00001208        0xc Controls.o
+                0x00001208                _ZN8Controls10stopBuzzerEv
  .text._ZN3led8led_initEv
-                0x00000e84       0x26 led.o
-                0x00000e84                _ZN3led8led_initEv
+                0x00001214       0x26 led.o
+                0x00001214                _ZN3led8led_initEv
  .text._ZN3led6led_doEii
-                0x00000eaa       0xb2 led.o
-                0x00000eaa                _ZN3led6led_doEii
+                0x0000123a       0xb2 led.o
+                0x0000123a                _ZN3led6led_doEii
  .text._ZN17Adafruit_MAX318657spixferEh
-                0x00000f5c        0xc max31865.o
-                0x00000f5c                _ZN17Adafruit_MAX318657spixferEh
+                0x000012ec        0xc max31865.o
+                0x000012ec                _ZN17Adafruit_MAX318657spixferEh
  .text._ZN17Adafruit_MAX3186513readRegisterNEhPhh
-                0x00000f68       0x9a max31865.o
-                0x00000f68                _ZN17Adafruit_MAX3186513readRegisterNEhPhh
+                0x000012f8       0x9a max31865.o
+                0x000012f8                _ZN17Adafruit_MAX3186513readRegisterNEhPhh
  .text._ZN17Adafruit_MAX3186513readRegister8Eh
-                0x00001002       0x20 max31865.o
-                0x00001002                _ZN17Adafruit_MAX3186513readRegister8Eh
+                0x00001392       0x20 max31865.o
+                0x00001392                _ZN17Adafruit_MAX3186513readRegister8Eh
  .text._ZN17Adafruit_MAX3186514readRegister16Eh
-                0x00001022       0x30 max31865.o
-                0x00001022                _ZN17Adafruit_MAX3186514readRegister16Eh
+                0x000013b2       0x30 max31865.o
+                0x000013b2                _ZN17Adafruit_MAX3186514readRegister16Eh
  .text._ZN17Adafruit_MAX3186514writeRegister8Ehh
-                0x00001052       0x6e max31865.o
-                0x00001052                _ZN17Adafruit_MAX3186514writeRegister8Ehh
+                0x000013e2       0x6e max31865.o
+                0x000013e2                _ZN17Adafruit_MAX3186514writeRegister8Ehh
  .text._ZN17Adafruit_MAX3186510clearFaultEv
-                0x000010c0       0x1c max31865.o
-                0x000010c0                _ZN17Adafruit_MAX3186510clearFaultEv
+                0x00001450       0x1c max31865.o
+                0x00001450                _ZN17Adafruit_MAX3186510clearFaultEv
  .text._ZN17Adafruit_MAX3186510enableBiasEb
-                0x000010dc       0x2a max31865.o
-                0x000010dc                _ZN17Adafruit_MAX3186510enableBiasEb
+                0x0000146c       0x2a max31865.o
+                0x0000146c                _ZN17Adafruit_MAX3186510enableBiasEb
  .text._ZN17Adafruit_MAX3186511autoConvertEb
-                0x00001106       0x2a max31865.o
-                0x00001106                _ZN17Adafruit_MAX3186511autoConvertEb
+                0x00001496       0x2a max31865.o
+                0x00001496                _ZN17Adafruit_MAX3186511autoConvertEb
  .text._ZN17Adafruit_MAX318658setWiresE17max31865_numwires
-                0x00001130       0x2a max31865.o
-                0x00001130                _ZN17Adafruit_MAX318658setWiresE17max31865_numwires
+                0x000014c0       0x2a max31865.o
+                0x000014c0                _ZN17Adafruit_MAX318658setWiresE17max31865_numwires
  .text._ZN17Adafruit_MAX318655beginEh
-                0x0000115a       0x3c max31865.o
-                0x0000115a                _ZN17Adafruit_MAX318655beginEh
+                0x000014ea       0x3c max31865.o
+                0x000014ea                _ZN17Adafruit_MAX318655beginEh
  .text._ZN17Adafruit_MAX318657readRTDEv
-                0x00001196       0x46 max31865.o
-                0x00001196                _ZN17Adafruit_MAX318657readRTDEv
+                0x00001526       0x46 max31865.o
+                0x00001526                _ZN17Adafruit_MAX318657readRTDEv
  .text._ZN17Adafruit_MAX3186511temperatureEff
-                0x000011dc      0x182 max31865.o
-                0x000011dc                _ZN17Adafruit_MAX3186511temperatureEff
+                0x0000156c      0x182 max31865.o
+                0x0000156c                _ZN17Adafruit_MAX3186511temperatureEff
  .text._Z8spi_initv
-                0x0000135e       0x32 max7219.o
-                0x0000135e                _Z8spi_initv
+                0x000016ee       0x32 max7219.o
+                0x000016ee                _Z8spi_initv
  .text._Z11spiSendBytec
-                0x00001390       0x16 max7219.o
-                0x00001390                _Z11spiSendBytec
+                0x00001720       0x16 max7219.o
+                0x00001720                _Z11spiSendBytec
  .text._ZN7max721911MAX7219_setEiii
-                0x000013a6       0x10 max7219.o
-                0x000013a6                _ZN7max721911MAX7219_setEiii
+                0x00001736       0x10 max7219.o
+                0x00001736                _ZN7max721911MAX7219_setEiii
  .text._ZN7max721917MAX7219_writeDataEcc
-                0x000013b6       0x66 max7219.o
-                0x000013b6                _ZN7max721917MAX7219_writeDataEcc
+                0x00001746       0x66 max7219.o
+                0x00001746                _ZN7max721917MAX7219_writeDataEcc
  .text._ZN7max721912MAX7219_initEc
-                0x0000141c       0x3e max7219.o
-                0x0000141c                _ZN7max721912MAX7219_initEc
+                0x000017ac       0x3e max7219.o
+                0x000017ac                _ZN7max721912MAX7219_initEc
  .text._ZN7max721920MAX7219_clearDisplayEv
-                0x0000145a       0x52 max7219.o
-                0x0000145a                _ZN7max721920MAX7219_clearDisplayEv
+                0x000017ea       0x52 max7219.o
+                0x000017ea                _ZN7max721920MAX7219_clearDisplayEv
  .text._ZN8SPIClass5beginEv
-                0x000014ac       0x2e spi.o
-                0x000014ac                _ZN8SPIClass5beginEv
+                0x0000183c       0x2e spi.o
+                0x0000183c                _ZN8SPIClass5beginEv
  .text._ZN6Timerr11setTimerNumEi
-                0x000014da        0x8 Timerr.o
-                0x000014da                _ZN6Timerr11setTimerNumEi
+                0x0000186a        0x8 Timerr.o
+                0x0000186a                _ZN6Timerr11setTimerNumEi
  .text._ZN6Timerr19setCompareInterruptEv
-                0x000014e2        0xc Timerr.o
-                0x000014e2                _ZN6Timerr19setCompareInterruptEv
+                0x00001872        0xc Timerr.o
+                0x00001872                _ZN6Timerr19setCompareInterruptEv
  .text._ZN6Timerr16startCustomTimerEi
-                0x000014ee       0x2a Timerr.o
-                0x000014ee                _ZN6Timerr16startCustomTimerEi
+                0x0000187e       0x2a Timerr.o
+                0x0000187e                _ZN6Timerr16startCustomTimerEi
  .text._Z9initUART0v
-                0x00001518       0x18 uart.o
-                0x00001518                _Z9initUART0v
+                0x000018a8       0x18 uart.o
+                0x000018a8                _Z9initUART0v
  .text.__vector_25
-                0x00001530       0x20 uart.o
-                0x00001530                __vector_25
+                0x000018c0       0x20 uart.o
+                0x000018c0                __vector_25
  .text.avr-libc.fplib
-                0x00001550        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(addsf3.o)
-                0x00001550                __subsf3
-                0x00001552                __addsf3
+                0x000018e0        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(addsf3.o)
+                0x000018e0                __subsf3
+                0x000018e2                __addsf3
  .text.avr-libc.fplib
-                0x0000155a       0xc0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(addsf3x.o)
-                0x00001574                __addsf3x
+                0x000018ea       0xc0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(addsf3x.o)
+                0x00001904                __addsf3x
  .text.avr-libc.fplib
-                0x0000161a        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
-                0x0000161a                __nesf2
-                0x0000161a                __eqsf2
-                0x0000161a                __cmpsf2
-                0x0000161a                __ltsf2
-                0x0000161a                __lesf2
+                0x000019aa        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(cmpsf2.o)
+                0x000019aa                __nesf2
+                0x000019aa                __eqsf2
+                0x000019aa                __cmpsf2
+                0x000019aa                __ltsf2
+                0x000019aa                __lesf2
  .text.avr-libc.fplib
-                0x00001622        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(divsf3.o)
-                0x00001622                __divsf3
+                0x000019b2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(divsf3.o)
+                0x000019b2                __divsf3
  .text.avr-libc.fplib
-                0x00001626       0xcc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(divsf3x.o)
-                0x0000163c                __divsf3x
-                0x00001640                __divsf3_pse
+                0x000019b6       0xcc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(divsf3x.o)
+                0x000019cc                __divsf3x
+                0x000019d0                __divsf3_pse
  .text.avr-libc.fplib
-                0x000016f2        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
-                0x000016f2                __fixsfsi
+                0x00001a82        0xa c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fixsfsi.o)
+                0x00001a82                __fixsfsi
  .text.avr-libc.fplib
-                0x000016fc       0x58 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
-                0x000016fc                __fixunssfsi
+                0x00001a8c       0x58 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fixunssfsi.o)
+                0x00001a8c                __fixunssfsi
  .text.avr-libc.fplib
-                0x00001754       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(floatsisf.o)
-                0x00001754                __floatunsisf
-                0x00001758                __floatsisf
+                0x00001ae4       0x7a c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(floatsisf.o)
+                0x00001ae4                __floatunsisf
+                0x00001ae8                __floatsisf
  .text.avr-libc.fplib
-                0x000017ce       0x48 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
-                0x000017ce                __fp_cmp
+                0x00001b5e       0x48 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_cmp.o)
+                0x00001b5e                __fp_cmp
  .text.avr-libc.fplib
-                0x00001816        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_inf.o)
-                0x00001816                __fp_inf
+                0x00001ba6        0xc c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_inf.o)
+                0x00001ba6                __fp_inf
  .text.avr-libc.fplib
-                0x00001822        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_nan.o)
-                0x00001822                __fp_nan
+                0x00001bb2        0x6 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_nan.o)
+                0x00001bb2                __fp_nan
  .text.avr-libc.fplib
-                0x00001828        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
-                0x00001828                __fp_pscA
+                0x00001bb8        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_pscA.o)
+                0x00001bb8                __fp_pscA
  .text.avr-libc.fplib
-                0x00001836        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
-                0x00001836                __fp_pscB
+                0x00001bc6        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_pscB.o)
+                0x00001bc6                __fp_pscB
  .text.avr-libc.fplib
-                0x00001844       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_round.o)
-                0x00001844                __fp_round
+                0x00001bd4       0x22 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_round.o)
+                0x00001bd4                __fp_round
  .text.avr-libc.fplib
-                0x00001866       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_split3.o)
-                0x00001866                __fp_split3
-                0x00001876                __fp_splitA
+                0x00001bf6       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_split3.o)
+                0x00001bf6                __fp_split3
+                0x00001c06                __fp_splitA
  .text.avr-libc.fplib
-                0x000018aa        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_zero.o)
-                0x000018aa                __fp_zero
-                0x000018ac                __fp_szero
+                0x00001c3a        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_zero.o)
+                0x00001c3a                __fp_zero
+                0x00001c3c                __fp_szero
  .text.avr-libc.fplib
-                0x000018b8        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(gesf2.o)
-                0x000018b8                __gesf2
-                0x000018b8                __gtsf2
+                0x00001c48        0x8 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(gesf2.o)
+                0x00001c48                __gesf2
+                0x00001c48                __gtsf2
  .text.avr-libc.fplib
-                0x000018c0        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(mulsf3.o)
-                0x000018c0                __mulsf3
+                0x00001c50        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(mulsf3.o)
+                0x00001c50                __mulsf3
  .text.avr-libc.fplib
-                0x000018c4       0xc2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
-                0x000018d8                __mulsf3x
-                0x000018dc                __mulsf3_pse
+                0x00001c54       0xc2 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(mulsf3x.o)
+                0x00001c68                __mulsf3x
+                0x00001c6c                __mulsf3_pse
  .text.avr-libc.fplib
-                0x00001986       0x84 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(sqrt.o)
-                0x0000198e                sqrtf
-                0x0000198e                sqrt
+                0x00001d16       0x84 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(sqrt.o)
+                0x00001d1e                sqrtf
+                0x00001d1e                sqrt
  .text.avr-libc.fplib
-                0x00001a0a       0x1c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_mpack.o)
-                0x00001a0a                __fp_mpack
-                0x00001a0e                __fp_mpack_finite
+                0x00001d9a       0x1c c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_mpack.o)
+                0x00001d9a                __fp_mpack
+                0x00001d9e                __fp_mpack_finite
  .text.avr-libc.fplib
-                0x00001a26        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_norm2.o)
-                0x00001a26                __fp_norm2
+                0x00001db6        0xe c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libm.a(fp_norm2.o)
+                0x00001db6                __fp_norm2
  .text.libgcc.div
-                0x00001a34       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_divmodhi4.o)
-                0x00001a34                _div
-                0x00001a34                __divmodhi4
+                0x00001dc4       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_divmodhi4.o)
+                0x00001dc4                _div
+                0x00001dc4                __divmodhi4
  .text.libgcc.div
-                0x00001a5a       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodhi4.o)
-                0x00001a5a                __udivmodhi4
- .text.libgcc   0x00001a82       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
-                0x00001a82                __tablejump2__
-                0x00001a92                . = ALIGN (0x2)
+                0x00001dea       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodhi4.o)
+                0x00001dea                __udivmodhi4
+ .text.libgcc   0x00001e12       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
+                0x00001e12                __tablejump2__
+                0x00001e22                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001a92        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
-                0x00001a92                _exit
-                0x00001a92                exit
+ .fini9         0x00001e22        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+                0x00001e22                _exit
+                0x00001e22                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -874,11 +890,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001a92        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+ .fini0         0x00001e22        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001a96                _etext = .
+                0x00001e26                _etext = .
 
-.data           0x00800200        0xa load address 0x00001a96
+.data           0x00800200        0xa load address 0x00001e26
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -899,85 +915,100 @@ END GROUP
                 0x0080020a                _edata = .
                 0x0080020a                PROVIDE (__data_end, .)
 
-.bss            0x0080020a       0x37
+.bss            0x0080020a       0x3c
                 0x0080020a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
  .bss.preHeat   0x0080020a        0x1 BabyWarmerUno.o
                 0x0080020a                preHeat
- .bss.button_change
+ .bss.air_high_temperature
                 0x0080020b        0x1 BabyWarmerUno.o
-                0x0080020b                button_change
- .bss.stop_buzzer
+                0x0080020b                air_high_temperature
+ .bss.high_temperature
                 0x0080020c        0x1 BabyWarmerUno.o
-                0x0080020c                stop_buzzer
- .bss.buzzer_stop_pressed
+                0x0080020c                high_temperature
+ .bss.low_temperature
                 0x0080020d        0x1 BabyWarmerUno.o
-                0x0080020d                buzzer_stop_pressed
- .bss.set_down_pressed
+                0x0080020d                low_temperature
+ .bss.baby_placed_and_setpoint_once_reached
                 0x0080020e        0x1 BabyWarmerUno.o
-                0x0080020e                set_down_pressed
- .bss.set_pressed
+                0x0080020e                baby_placed_and_setpoint_once_reached
+ .bss.button_change
                 0x0080020f        0x1 BabyWarmerUno.o
-                0x0080020f                set_pressed
- .bss.set_up_pressed
+                0x0080020f                button_change
+ .bss.stop_buzzer
                 0x00800210        0x1 BabyWarmerUno.o
-                0x00800210                set_up_pressed
- .bss.Led       0x00800211        0x1 BabyWarmerUno.o
-                0x00800211                Led
- .bss.max2      0x00800212        0x6 BabyWarmerUno.o
-                0x00800212                max2
- .bss.max1      0x00800218        0x6 BabyWarmerUno.o
-                0x00800218                max1
+                0x00800210                stop_buzzer
+ .bss.buzzer_stop_pressed
+                0x00800211        0x1 BabyWarmerUno.o
+                0x00800211                buzzer_stop_pressed
+ .bss.set_down_pressed
+                0x00800212        0x1 BabyWarmerUno.o
+                0x00800212                set_down_pressed
+ .bss.set_pressed
+                0x00800213        0x1 BabyWarmerUno.o
+                0x00800213                set_pressed
+ .bss.set_up_pressed
+                0x00800214        0x1 BabyWarmerUno.o
+                0x00800214                set_up_pressed
+ .bss.Led       0x00800215        0x1 BabyWarmerUno.o
+                0x00800215                Led
+ .bss.max2      0x00800216        0x6 BabyWarmerUno.o
+                0x00800216                max2
+ .bss.max1      0x0080021c        0x6 BabyWarmerUno.o
+                0x0080021c                max1
  .bss.display_count
-                0x0080021e        0x2 BabyWarmerUno.o
-                0x0080021e                display_count
+                0x00800222        0x2 BabyWarmerUno.o
+                0x00800222                display_count
  .bss.set_temperature_copy
-                0x00800220        0x4 BabyWarmerUno.o
-                0x00800220                set_temperature_copy
- .bss.air_temperature
                 0x00800224        0x4 BabyWarmerUno.o
-                0x00800224                air_temperature
- .bss.skin_temperature
+                0x00800224                set_temperature_copy
+ .bss.air_temperature
                 0x00800228        0x4 BabyWarmerUno.o
-                0x00800228                skin_temperature
- .bss.maxSkin   0x0080022c        0x5 BabyWarmerUno.o
-                0x0080022c                maxSkin
- .bss.maxAir    0x00800231        0x5 BabyWarmerUno.o
-                0x00800231                maxAir
+                0x00800228                air_temperature
+ .bss.skin_temperature
+                0x0080022c        0x4 BabyWarmerUno.o
+                0x0080022c                skin_temperature
+ .bss.maxSkin   0x00800230        0x5 BabyWarmerUno.o
+                0x00800230                maxSkin
+ .bss.maxAir    0x00800235        0x5 BabyWarmerUno.o
+                0x00800235                maxAir
  .bss.buzzer_timer
-                0x00800236        0x1 BabyWarmerUno.o
-                0x00800236                buzzer_timer
- .bss.start_buzzer
-                0x00800237        0x1 BabyWarmerUno.o
-                0x00800237                start_buzzer
- .bss.controls  0x00800238        0x1 BabyWarmerUno.o
-                0x00800238                controls
- .bss.spiTimerCheck
-                0x00800239        0x1 BabyWarmerUno.o
-                0x00800239                spiTimerCheck
- .bss.displayUpdate
                 0x0080023a        0x1 BabyWarmerUno.o
-                0x0080023a                displayUpdate
- .bss.timerr    0x0080023b        0x2 BabyWarmerUno.o
-                0x0080023b                timerr
- .bss.second    0x0080023d        0x2 BabyWarmerUno.o
-                0x0080023d                second
+                0x0080023a                buzzer_timer
+ .bss.start_buzzer
+                0x0080023b        0x1 BabyWarmerUno.o
+                0x0080023b                start_buzzer
+ .bss.controls  0x0080023c        0x1 BabyWarmerUno.o
+                0x0080023c                controls
+ .bss.spiTimerCheck
+                0x0080023d        0x1 BabyWarmerUno.o
+                0x0080023d                spiTimerCheck
+ .bss.displayUpdate
+                0x0080023e        0x1 BabyWarmerUno.o
+                0x0080023e                displayUpdate
+ .bss.timerr    0x0080023f        0x2 BabyWarmerUno.o
+                0x0080023f                timerr
+ .bss.displayOnTempOutOfRangeFlag
+                0x00800241        0x1 BabyWarmerUno.o
+                0x00800241                displayOnTempOutOfRangeFlag
+ .bss.second    0x00800242        0x2 BabyWarmerUno.o
+                0x00800242                second
  .bss.startMonitor
-                0x0080023f        0x1 BabyWarmerUno.o
-                0x0080023f                startMonitor
- .bss.buffer    0x00800240        0x1 uart.o
-                0x00800240                buffer
+                0x00800244        0x1 BabyWarmerUno.o
+                0x00800244                startMonitor
+ .bss.buffer    0x00800245        0x1 uart.o
+                0x00800245                buffer
  *(COMMON)
-                0x00800241                PROVIDE (__bss_end, .)
-                0x00001a96                __data_load_start = LOADADDR (.data)
-                0x00001aa0                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800246                PROVIDE (__bss_end, .)
+                0x00001e26                __data_load_start = LOADADDR (.data)
+                0x00001e30                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800241        0x0
+.noinit         0x00800246        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800241                _end = .
+                0x00800246                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -1049,104 +1080,104 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x2a0
+.debug_aranges  0x00000000      0x2d0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x98 BabyWarmerUno.o
+                0x00000000       0xc8 BabyWarmerUno.o
  .debug_aranges
-                0x00000098       0x50 Controls.o
+                0x000000c8       0x50 Controls.o
  .debug_aranges
-                0x000000e8       0x30 led.o
+                0x00000118       0x30 led.o
  .debug_aranges
-                0x00000118       0x80 max31865.o
+                0x00000148       0x80 max31865.o
  .debug_aranges
-                0x00000198       0x50 max7219.o
+                0x000001c8       0x50 max7219.o
  .debug_aranges
-                0x000001e8       0x20 spi.o
+                0x00000218       0x20 spi.o
  .debug_aranges
-                0x00000208       0x50 Timerr.o
+                0x00000238       0x50 Timerr.o
  .debug_aranges
-                0x00000258       0x48 uart.o
+                0x00000288       0x48 uart.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x5106
+.debug_info     0x00000000     0x586d
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc     0x26ee BabyWarmerUno.o
- .debug_info    0x000032aa      0x26f Controls.o
- .debug_info    0x00003519      0x18e led.o
- .debug_info    0x000036a7      0xcee max31865.o
- .debug_info    0x00004395      0x643 max7219.o
- .debug_info    0x000049d8      0x1b2 spi.o
- .debug_info    0x00004b8a      0x2b9 Timerr.o
- .debug_info    0x00004e43      0x2c3 uart.o
+ .debug_info    0x00000bbc     0x2e55 BabyWarmerUno.o
+ .debug_info    0x00003a11      0x26f Controls.o
+ .debug_info    0x00003c80      0x18e led.o
+ .debug_info    0x00003e0e      0xcee max31865.o
+ .debug_info    0x00004afc      0x643 max7219.o
+ .debug_info    0x0000513f      0x1b2 spi.o
+ .debug_info    0x000052f1      0x2b9 Timerr.o
+ .debug_info    0x000055aa      0x2c3 uart.o
 
-.debug_abbrev   0x00000000     0x1902
+.debug_abbrev   0x00000000     0x1938
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0xb1a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_abbrev  0x00000b1a      0x356 BabyWarmerUno.o
- .debug_abbrev  0x00000e70       0xc6 Controls.o
- .debug_abbrev  0x00000f36       0xcf led.o
- .debug_abbrev  0x00001005      0x32d max31865.o
- .debug_abbrev  0x00001332      0x1d3 max7219.o
- .debug_abbrev  0x00001505      0x115 spi.o
- .debug_abbrev  0x0000161a      0x10b Timerr.o
- .debug_abbrev  0x00001725      0x1dd uart.o
+ .debug_abbrev  0x00000b1a      0x38c BabyWarmerUno.o
+ .debug_abbrev  0x00000ea6       0xc6 Controls.o
+ .debug_abbrev  0x00000f6c       0xcf led.o
+ .debug_abbrev  0x0000103b      0x32d max31865.o
+ .debug_abbrev  0x00001368      0x1d3 max7219.o
+ .debug_abbrev  0x0000153b      0x115 spi.o
+ .debug_abbrev  0x00001650      0x10b Timerr.o
+ .debug_abbrev  0x0000175b      0x1dd uart.o
 
-.debug_line     0x00000000     0x1827
+.debug_line     0x00000000     0x1a9d
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1f9 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_line    0x000001f9      0x994 BabyWarmerUno.o
- .debug_line    0x00000b8d       0xd7 Controls.o
- .debug_line    0x00000c64      0x1b2 led.o
- .debug_line    0x00000e16      0x453 max31865.o
- .debug_line    0x00001269      0x2a7 max7219.o
- .debug_line    0x00001510       0xd5 spi.o
- .debug_line    0x000015e5       0xd9 Timerr.o
- .debug_line    0x000016be      0x169 uart.o
+ .debug_line    0x000001f9      0xc04 BabyWarmerUno.o
+ .debug_line    0x00000dfd       0xdd Controls.o
+ .debug_line    0x00000eda      0x1b2 led.o
+ .debug_line    0x0000108c      0x453 max31865.o
+ .debug_line    0x000014df      0x2a7 max7219.o
+ .debug_line    0x00001786       0xd5 spi.o
+ .debug_line    0x0000185b       0xd9 Timerr.o
+ .debug_line    0x00001934      0x169 uart.o
 
-.debug_frame    0x00000000      0x6b8
+.debug_frame    0x00000000      0x72c
  *(.debug_frame)
- .debug_frame   0x00000000      0x1d4 BabyWarmerUno.o
- .debug_frame   0x000001d4       0x84 Controls.o
- .debug_frame   0x00000258       0x44 led.o
- .debug_frame   0x0000029c      0x1dc max31865.o
- .debug_frame   0x00000478       0xec max7219.o
- .debug_frame   0x00000564       0x24 spi.o
- .debug_frame   0x00000588       0x84 Timerr.o
- .debug_frame   0x0000060c       0xac uart.o
+ .debug_frame   0x00000000      0x248 BabyWarmerUno.o
+ .debug_frame   0x00000248       0x84 Controls.o
+ .debug_frame   0x000002cc       0x44 led.o
+ .debug_frame   0x00000310      0x1dc max31865.o
+ .debug_frame   0x000004ec       0xec max7219.o
+ .debug_frame   0x000005d8       0x24 spi.o
+ .debug_frame   0x000005fc       0x84 Timerr.o
+ .debug_frame   0x00000680       0xac uart.o
 
-.debug_str      0x00000000     0x13dc
+.debug_str      0x00000000     0x1520
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_str     0x000003e6      0xc59 BabyWarmerUno.o
-                                0xcda (size before relaxing)
- .debug_str     0x0000103f       0x12 Controls.o
+ .debug_str     0x000003e6      0xd9d BabyWarmerUno.o
+                                0xe2f (size before relaxing)
+ .debug_str     0x00001183       0x12 Controls.o
                                 0x2c9 (size before relaxing)
- .debug_str     0x00001051       0x1b led.o
+ .debug_str     0x00001195       0x1b led.o
                                 0x217 (size before relaxing)
- .debug_str     0x0000106c      0x19c max31865.o
+ .debug_str     0x000011b0      0x19c max31865.o
                                 0x6cd (size before relaxing)
- .debug_str     0x00001208       0x70 max7219.o
+ .debug_str     0x0000134c       0x70 max7219.o
                                 0x34a (size before relaxing)
- .debug_str     0x00001278        0xd spi.o
+ .debug_str     0x000013bc        0xd spi.o
                                 0x2f8 (size before relaxing)
- .debug_str     0x00001285       0x6a Timerr.o
+ .debug_str     0x000013c9       0x6a Timerr.o
                                 0x2f5 (size before relaxing)
- .debug_str     0x000012ef       0xed uart.o
+ .debug_str     0x00001433       0xed uart.o
                                 0x2b5 (size before relaxing)
 
-.debug_loc      0x00000000     0x1d02
+.debug_loc      0x00000000     0x1f99
  *(.debug_loc)
- .debug_loc     0x00000000      0x960 BabyWarmerUno.o
- .debug_loc     0x00000960       0x72 Controls.o
- .debug_loc     0x000009d2      0x172 led.o
- .debug_loc     0x00000b44      0xb7e max31865.o
- .debug_loc     0x000016c2      0x38e max7219.o
- .debug_loc     0x00001a50      0x127 Timerr.o
- .debug_loc     0x00001b77      0x18b uart.o
+ .debug_loc     0x00000000      0xbf7 BabyWarmerUno.o
+ .debug_loc     0x00000bf7       0x72 Controls.o
+ .debug_loc     0x00000c69      0x172 led.o
+ .debug_loc     0x00000ddb      0xb7e max31865.o
+ .debug_loc     0x00001959      0x38e max7219.o
+ .debug_loc     0x00001ce7      0x127 Timerr.o
+ .debug_loc     0x00001e0e      0x18b uart.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1166,16 +1197,16 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x220
+.debug_ranges   0x00000000      0x250
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x88 BabyWarmerUno.o
- .debug_ranges  0x00000088       0x40 Controls.o
- .debug_ranges  0x000000c8       0x20 led.o
- .debug_ranges  0x000000e8       0x70 max31865.o
- .debug_ranges  0x00000158       0x40 max7219.o
- .debug_ranges  0x00000198       0x10 spi.o
- .debug_ranges  0x000001a8       0x40 Timerr.o
- .debug_ranges  0x000001e8       0x38 uart.o
+ .debug_ranges  0x00000000       0xb8 BabyWarmerUno.o
+ .debug_ranges  0x000000b8       0x40 Controls.o
+ .debug_ranges  0x000000f8       0x20 led.o
+ .debug_ranges  0x00000118       0x70 max31865.o
+ .debug_ranges  0x00000188       0x40 max7219.o
+ .debug_ranges  0x000001c8       0x10 spi.o
+ .debug_ranges  0x000001d8       0x40 Timerr.o
+ .debug_ranges  0x00000218       0x38 uart.o
 
 .debug_macro
  *(.debug_macro)

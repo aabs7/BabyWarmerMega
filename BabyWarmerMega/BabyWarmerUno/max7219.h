@@ -77,6 +77,8 @@
 #define B 0b01111111
 #define Y 0b00111011
 
+#define G 0b01011111
+
 #define FIRSTINITIALIZE 0
 #define REINITIALIZE	1
 

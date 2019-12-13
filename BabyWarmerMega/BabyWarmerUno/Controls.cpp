@@ -14,6 +14,9 @@ void Controls::initControls(){
 	DDR(BUZZER_PORT) |= (1 << BUZZER_PIN);
 	//FAN_PORT &=~ (1 << FAN_PIN);
 	HEATER_PORT &=~ (1 << HEATER_PIN);
+	//battery monitor pin as input
+	DDR(BATT_MONITOR_PORT) &= ~(1<<BATT_MONITOR_PIN_POSITION);
+	//BATT_MONITOR_PORT |= (1<<BATT_MONITOR_PIN);
 	//DDRB |= (1 << PINB7) | (1 << PINB4);
 	
 }

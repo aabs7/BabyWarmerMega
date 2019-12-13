@@ -15,6 +15,11 @@
 #define HEATER_PORT PORTB
 #define HEATER_PIN PINB5
 
+//For battery Monitor
+#define BATT_MONITOR_PORT			PORTF
+#define BATT_MONITOR_PIN			PINF
+#define BATT_MONITOR_PIN_POSITION	PINF0
+
 //Buzzer
 #define BUZZER_PORT PORTH
 #define BUZZER_PIN PINH4

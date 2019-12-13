@@ -44,6 +44,7 @@
 void init_devices();
 void check();
 void sendToDisplay(float air, float skin, float set);
+void displayOnTempOutOfRange(float air, float skin, float set);
 void sendToDisplayBelow(float temp);
 void displaySensFail();
 void displayPreHeat();
@@ -53,13 +54,20 @@ void displayOFF();
 void displayBABY();
 void titititi();
 void titi();
+void displayPwrFail();
 void displaySkinAirSet();
+void displayHighTemp();
+void displayLowTemp();
+void displayHighAir();
+void checkTemperature();
+
 
 void(* resetFunc) (void) = 0;
 //monitoring for
 bool startMonitor = false;
 int second = 0;
 
+bool displayOnTempOutOfRangeFlag = false;
 
 //TIMER FOR DISPLAY UPDATE
 Timerr timerr;
@@ -99,8 +107,12 @@ bool set_down_pressed = false;
 bool buzzer_stop_pressed = false;
 bool stop_buzzer = false;
 bool button_change = false;
-bool emergencyAlert = false;
 
+bool baby_placed_and_setpoint_once_reached = false;
+
+bool low_temperature = false;
+bool high_temperature = false;
+bool air_high_temperature = false;
 //preheat heater
 bool preHeat = false;
 
@@ -112,7 +124,7 @@ int main(void)
 	initUART0();
 	init_devices();
 	
-	titi();
+	
 	//initialize local variables.
 	//sendToDisplay(air_temperature,skin_temperature, set_temperature);
 	
@@ -123,7 +135,15 @@ int main(void)
 	bool clear_display = false;
 	bool set_temp_display = false;
 	
+	//**********************************************************************************//
+	//Check if the power is coming from battery or AC supply
+	while(bit_is_clear(BATT_MONITOR_PIN,BATT_MONITOR_PIN_POSITION)){
+		//then power is coming from battery.
+		titi();_delay_ms(500);
+		displayPwrFail();
+	}
 	
+	titi();
 	//*********************************************************************************//
 	
 	//check Sensor and display sensor fail if failure of sensor
@@ -245,7 +265,10 @@ int main(void)
 				displaySetTemperature();
 			}
 			
-			else{
+			else if(start_buzzer){
+				displayOnTempOutOfRange(air_temperature, skin_temperature, set_temperature);
+			}
+			else {
 				sendToDisplay(air_temperature, skin_temperature, set_temperature);
 			}
 			
@@ -326,6 +349,7 @@ void check() {
 	
 	
 	if((skin_temperature > 37.2) |(skin_temperature < 36.50) | (air_temperature>39.00) ) {
+		checkTemperature();
 		if(!startMonitor) {
 			start_buzzer = true;
 		}
@@ -336,7 +360,6 @@ void check() {
 			stop_buzzer = false;
 			start_buzzer = false;
 		}
-
 	}
 	else {
 		controls.stopBuzzer();
@@ -346,20 +369,25 @@ void check() {
 		second = 0;
 	}
 	
-	if(second >= 600) {	//timer prescaled to 200ms so 600 means 2 minutes.
-		//why this below line needed when if startMonitor = false, and skin temperature still set_temperature + 0.2
-		//controls.startBuzzer();
-		startMonitor = false;
-		second = 0;
+	//At first when the baby is just placed, alarm is continued every 5 minutes, but once baby set point temperature is reached, alarm is continued every 2 minutes
+	if(baby_placed_and_setpoint_once_reached){
+		if(second >= 600) {	//timer prescaled to 200ms so 600 means 2 minutes.
+			//why this below line needed when if startMonitor = false, and skin temperature still set_temperature + 0.2
+			//controls.startBuzzer();
+			startMonitor = false;
+			second = 0;
+		}
 	}
-	
-	if(air_temperature > 39) {
-		//controls.startBuzzer();
-		//Led.led_do(TS_HIGH_LED, 1);
-		Led.led_do(TA_HIGH_LED, 1);
-		} else{
-		//controls.stopBuzzer();
-		Led.led_do(TS_HIGH_LED, 0);
+	else{
+		if(second >= 1500) {	//timer prescaled to 200ms so 1500 means 5 minutes.
+			//why this below line needed when if startMonitor = false, and skin temperature still set_temperature + 0.2
+			//controls.startBuzzer();
+			startMonitor = false;
+			second = 0;
+		}
+		if(skin_temperature >= set_temperature){
+			baby_placed_and_setpoint_once_reached = true;
+		}
 	}
 	
 	//buzzer stop button
@@ -451,8 +479,43 @@ void sendToDisplay(float air, float skin, float set) {
 	max2.MAX7219_writeData(8, ((int)set % 10)| 0b10000000);
 	max2.MAX7219_writeData(2, (int)(set*10) % 10);
 }
+void checkTemperature() {
+	if(skin_temperature > 37.2){
+		low_temperature = false;
+		high_temperature = true;
+		air_temperature = false;
+		Led.led_do(TS_HIGH_LED, 1);
+	}
+	else if(skin_temperature < 36.50){
+		low_temperature = true;
+		high_temperature = false;
+		air_high_temperature = false;
+	}
+	else if(air_temperature >39.00){
+		air_high_temperature = true;
+		high_temperature = false;
+		low_temperature = false;
+		Led.led_do(TA_HIGH_LED, 1);
+	} else {
+		air_high_temperature = false;
+		high_temperature = false;
+		low_temperature = false;
+		Led.led_do(TA_HIGH_LED, 0);
+		Led.led_do(TS_HIGH_LED, 0);
+	}
+}
 
-
+void displayOnTempOutOfRange(float air, float skin, float set){
+	
+	if(high_temperature) {
+		displayOnTempOutOfRangeFlag?displayHighTemp():sendToDisplay(air,skin,set);
+	} else if(low_temperature) {
+		displayOnTempOutOfRangeFlag?displayLowTemp():sendToDisplay(air,skin,set);
+	} else if(air_high_temperature) {
+		displayOnTempOutOfRangeFlag?displayHighAir():sendToDisplay(air,skin,set);
+	}
+	displayOnTempOutOfRangeFlag = !displayOnTempOutOfRangeFlag;
+}
 void sendToDisplayBelow(float temp){
 	max2.MAX7219_writeData(MAX7219_MODE_DECODE,0xA2);
 	max2.MAX7219_writeData(4,das);
@@ -540,8 +603,53 @@ void displayOFF(){
 	max1.MAX7219_writeData(2,F);
 }
 
-void displayBABY(){
+void displayHighTemp(){
 	max1.MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
+	//first 4-7segment display from left to right
+	max1.MAX7219_writeData(3,H);
+	max1.MAX7219_writeData(7,I);
+	max1.MAX7219_writeData(5,G);
+	max1.MAX7219_writeData(1,H);
+	
+	//second 4-7 segment display from left to right
+	max1.MAX7219_writeData(4,t);
+	max1.MAX7219_writeData(8,P);
+	max1.MAX7219_writeData(6,das);
+	max1.MAX7219_writeData(2,das);
+}
+
+void displayLowTemp(){
+		max1.MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
+		//first 4-7segment display from left to right
+		max1.MAX7219_writeData(3,das);
+		max1.MAX7219_writeData(7,das);
+		max1.MAX7219_writeData(5,L);
+		max1.MAX7219_writeData(1,odot);
+		
+		//second 4-7 segment display from left to right
+		max1.MAX7219_writeData(4,t);
+		max1.MAX7219_writeData(8,P);
+		max1.MAX7219_writeData(6,das);
+		max1.MAX7219_writeData(2,das);
+}
+
+void displayHighAir(){
+	max1.MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
+	//first 4-7segment display from left to right
+	max1.MAX7219_writeData(3,H);
+	max1.MAX7219_writeData(7,I);
+	max1.MAX7219_writeData(5,G);
+	max1.MAX7219_writeData(1,H);
+	
+	//second 4-7 segment display from left to right
+	max1.MAX7219_writeData(4,A);
+	max1.MAX7219_writeData(8,I);
+	max1.MAX7219_writeData(6,R);
+	max1.MAX7219_writeData(2,das);
+}
+
+void displayBABY(){
+	
 	//first 4-7segment display from left to right
 	max1.MAX7219_writeData(3,B);
 	max1.MAX7219_writeData(7,A);
@@ -557,6 +665,20 @@ void displayBABY(){
 // Order of right and left 4-7 segment matrix registers.
 // 3 7 5 1      4 8 6 2
 // 4,6,8,2
+
+void displayPwrFail(){
+		max1.MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
+		max1.MAX7219_writeData(3,das);
+		max1.MAX7219_writeData(7,das);
+		max1.MAX7219_writeData(5,P);
+		max1.MAX7219_writeData(1,R);
+		//second 4-7 segment display from left to right
+		max1.MAX7219_writeData(4,F);
+		max1.MAX7219_writeData(8,A);
+		max1.MAX7219_writeData(6,I);
+		max1.MAX7219_writeData(2,L);
+}
+
 void displaySkinAirSet(){
 	max1.MAX7219_writeData(MAX7219_MODE_DECODE,0x00);
 	//first 4-7segment display from left to right
