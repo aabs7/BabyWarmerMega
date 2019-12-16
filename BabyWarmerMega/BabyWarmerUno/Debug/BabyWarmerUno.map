@@ -1102,17 +1102,17 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x586d
+.debug_info     0x00000000     0x5871
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc     0x2e55 BabyWarmerUno.o
- .debug_info    0x00003a11      0x26f Controls.o
- .debug_info    0x00003c80      0x18e led.o
- .debug_info    0x00003e0e      0xcee max31865.o
- .debug_info    0x00004afc      0x643 max7219.o
- .debug_info    0x0000513f      0x1b2 spi.o
- .debug_info    0x000052f1      0x2b9 Timerr.o
- .debug_info    0x000055aa      0x2c3 uart.o
+ .debug_info    0x00000bbc     0x2e59 BabyWarmerUno.o
+ .debug_info    0x00003a15      0x26f Controls.o
+ .debug_info    0x00003c84      0x18e led.o
+ .debug_info    0x00003e12      0xcee max31865.o
+ .debug_info    0x00004b00      0x643 max7219.o
+ .debug_info    0x00005143      0x1b2 spi.o
+ .debug_info    0x000052f5      0x2b9 Timerr.o
+ .debug_info    0x000055ae      0x2c3 uart.o
 
 .debug_abbrev   0x00000000     0x1938
  *(.debug_abbrev)
@@ -1149,7 +1149,7 @@ END GROUP
  .debug_frame   0x000005fc       0x84 Timerr.o
  .debug_frame   0x00000680       0xac uart.o
 
-.debug_str      0x00000000     0x1520
+.debug_str      0x00000000     0x14da
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega2560/avr6/crtatmega2560.o
  .debug_str     0x000003e6      0xd9d BabyWarmerUno.o
@@ -1164,10 +1164,10 @@ END GROUP
                                 0x34a (size before relaxing)
  .debug_str     0x000013bc        0xd spi.o
                                 0x2f8 (size before relaxing)
- .debug_str     0x000013c9       0x6a Timerr.o
-                                0x2f5 (size before relaxing)
- .debug_str     0x00001433       0xed uart.o
-                                0x2b5 (size before relaxing)
+ .debug_str     0x000013c9       0x24 Timerr.o
+                                0x307 (size before relaxing)
+ .debug_str     0x000013ed       0xed uart.o
+                                0x2c7 (size before relaxing)
 
 .debug_loc      0x00000000     0x1f99
  *(.debug_loc)

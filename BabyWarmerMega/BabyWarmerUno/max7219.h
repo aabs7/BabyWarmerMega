@@ -41,6 +41,7 @@
 //similarly to display SEt
 #define S  0b01011011
 #define E  0b01001111
+#define SMALL_E	0b01101111
 //t already defined
 
 //define das (no output)
@@ -49,6 +50,7 @@
 //define FAIL SENS
 #define F 0b01000111
 #define A 0b01110111
+#define SMALL_A	0b01111101
 // A already defined
 #define I 0b00000110
 // L already defined
@@ -60,7 +62,7 @@
 //define pre heat
 //define PRE
 #define P 0b01100111
-#define R 0b00000101
+#define R 0b01000110
 //E already defined
 
 // define HEAT

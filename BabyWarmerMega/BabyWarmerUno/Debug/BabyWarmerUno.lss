@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 000002d0  00000000  00000000  00001f34  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000586d  00000000  00000000  00002204  2**0
+  6 .debug_info   00005871  00000000  00000000  00002204  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00001938  00000000  00000000  00007a71  2**0
+  7 .debug_abbrev 00001938  00000000  00000000  00007a75  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001a9d  00000000  00000000  000093a9  2**0
+  8 .debug_line   00001a9d  00000000  00000000  000093ad  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  0000072c  00000000  00000000  0000ae48  2**2
+  9 .debug_frame  0000072c  00000000  00000000  0000ae4c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00001520  00000000  00000000  0000b574  2**0
+ 10 .debug_str    000014da  00000000  00000000  0000b578  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00001f99  00000000  00000000  0000ca94  2**0
+ 11 .debug_loc    00001f99  00000000  00000000  0000ca52  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000250  00000000  00000000  0000ea2d  2**0
+ 12 .debug_ranges 00000250  00000000  00000000  0000e9eb  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -841,12 +841,12 @@ Disassembly of section .text:
      708:	8c e1       	ldi	r24, 0x1C	; 28
      70a:	92 e0       	ldi	r25, 0x02	; 2
      70c:	0e 94 a3 0b 	call	0x1746	; 0x1746 <_ZN7max721917MAX7219_writeDataEcc>
-     710:	45 e0       	ldi	r20, 0x05	; 5
+     710:	46 e4       	ldi	r20, 0x46	; 70
      712:	65 e0       	ldi	r22, 0x05	; 5
      714:	8c e1       	ldi	r24, 0x1C	; 28
      716:	92 e0       	ldi	r25, 0x02	; 2
      718:	0e 94 a3 0b 	call	0x1746	; 0x1746 <_ZN7max721917MAX7219_writeDataEcc>
-     71c:	4f e4       	ldi	r20, 0x4F	; 79
+     71c:	4f e6       	ldi	r20, 0x6F	; 111
      71e:	61 e0       	ldi	r22, 0x01	; 1
      720:	8c e1       	ldi	r24, 0x1C	; 28
      722:	92 e0       	ldi	r25, 0x02	; 2
@@ -856,12 +856,12 @@ Disassembly of section .text:
      72c:	8c e1       	ldi	r24, 0x1C	; 28
      72e:	92 e0       	ldi	r25, 0x02	; 2
      730:	0e 94 a3 0b 	call	0x1746	; 0x1746 <_ZN7max721917MAX7219_writeDataEcc>
-     734:	4f e4       	ldi	r20, 0x4F	; 79
+     734:	4f e6       	ldi	r20, 0x6F	; 111
      736:	68 e0       	ldi	r22, 0x08	; 8
      738:	8c e1       	ldi	r24, 0x1C	; 28
      73a:	92 e0       	ldi	r25, 0x02	; 2
      73c:	0e 94 a3 0b 	call	0x1746	; 0x1746 <_ZN7max721917MAX7219_writeDataEcc>
-     740:	47 e7       	ldi	r20, 0x77	; 119
+     740:	4d e7       	ldi	r20, 0x7D	; 125
      742:	66 e0       	ldi	r22, 0x06	; 6
      744:	8c e1       	ldi	r24, 0x1C	; 28
      746:	92 e0       	ldi	r25, 0x02	; 2
@@ -1005,7 +1005,7 @@ Disassembly of section .text:
      84e:	8c e1       	ldi	r24, 0x1C	; 28
      850:	92 e0       	ldi	r25, 0x02	; 2
      852:	79 d7       	rcall	.+3826   	; 0x1746 <_ZN7max721917MAX7219_writeDataEcc>
-     854:	45 e0       	ldi	r20, 0x05	; 5
+     854:	46 e4       	ldi	r20, 0x46	; 70
      856:	66 e0       	ldi	r22, 0x06	; 6
      858:	8c e1       	ldi	r24, 0x1C	; 28
      85a:	92 e0       	ldi	r25, 0x02	; 2
@@ -1082,7 +1082,7 @@ Disassembly of section .text:
      8f0:	8c e1       	ldi	r24, 0x1C	; 28
      8f2:	92 e0       	ldi	r25, 0x02	; 2
      8f4:	28 d7       	rcall	.+3664   	; 0x1746 <_ZN7max721917MAX7219_writeDataEcc>
-     8f6:	45 e0       	ldi	r20, 0x05	; 5
+     8f6:	46 e4       	ldi	r20, 0x46	; 70
      8f8:	61 e0       	ldi	r22, 0x01	; 1
      8fa:	8c e1       	ldi	r24, 0x1C	; 28
      8fc:	92 e0       	ldi	r25, 0x02	; 2
@@ -3685,6 +3685,12 @@ void SPIClass::begin()
     1868:	08 95       	ret
 
 0000186a <_ZN6Timerr11setTimerNumEi>:
+	SET_COMPARE(1, A);
+}
+
+void Timerr::resetTimer() {
+	
+	TCNT1 = 0;
     186a:	fc 01       	movw	r30, r24
     186c:	71 83       	std	Z+1, r23	; 0x01
     186e:	60 83       	st	Z, r22
@@ -3699,6 +3705,12 @@ void SPIClass::begin()
     187c:	08 95       	ret
 
 0000187e <_ZN6Timerr16startCustomTimerEi>:
+	
+}
+void Timerr::startCustomTimer(int milli_sec) {
+	
+		int ocr = (15.625 * milli_sec);
+		OCR1A = ocr;
     187e:	07 2e       	mov	r0, r23
     1880:	00 0c       	add	r0, r0
     1882:	88 0b       	sbc	r24, r24
@@ -3712,6 +3724,7 @@ void SPIClass::begin()
     1892:	f7 d0       	rcall	.+494    	; 0x1a82 <__fixsfsi>
     1894:	70 93 89 00 	sts	0x0089, r23	; 0x800089 <__TEXT_REGION_LENGTH__+0x700089>
     1898:	60 93 88 00 	sts	0x0088, r22	; 0x800088 <__TEXT_REGION_LENGTH__+0x700088>
+		START_TIMERR(1,0,2); //for proteus use 5,0,1 and for real life use 5,0,2
     189c:	e1 e8       	ldi	r30, 0x81	; 129
     189e:	f0 e0       	ldi	r31, 0x00	; 0
     18a0:	80 81       	ld	r24, Z
@@ -3720,6 +3733,12 @@ void SPIClass::begin()
     18a6:	08 95       	ret
 
 000018a8 <_Z9initUART0v>:
+
+void UART0TransmitString(const char *s)
+{
+	while(*s)
+	UART0Transmit(*s++);
+}
     18a8:	10 92 c5 00 	sts	0x00C5, r1	; 0x8000c5 <__TEXT_REGION_LENGTH__+0x7000c5>
     18ac:	87 e6       	ldi	r24, 0x67	; 103
     18ae:	80 93 c4 00 	sts	0x00C4, r24	; 0x8000c4 <__TEXT_REGION_LENGTH__+0x7000c4>
@@ -3730,14 +3749,20 @@ void SPIClass::begin()
     18be:	08 95       	ret
 
 000018c0 <__vector_25>:
+
+ISR(USART0_RX_vect)
+{
     18c0:	1f 92       	push	r1
     18c2:	0f 92       	push	r0
     18c4:	0f b6       	in	r0, 0x3f	; 63
     18c6:	0f 92       	push	r0
     18c8:	11 24       	eor	r1, r1
     18ca:	8f 93       	push	r24
+	buffer=UDR0;
     18cc:	80 91 c6 00 	lds	r24, 0x00C6	; 0x8000c6 <__TEXT_REGION_LENGTH__+0x7000c6>
     18d0:	80 93 45 02 	sts	0x0245, r24	; 0x800245 <buffer>
+	
+}
     18d4:	8f 91       	pop	r24
     18d6:	0f 90       	pop	r0
     18d8:	0f be       	out	0x3f, r0	; 63

@@ -563,12 +563,12 @@ void displayPreHeat(){
 	max1.MAX7219_writeData(3,das);
 	max1.MAX7219_writeData(7,P);
 	max1.MAX7219_writeData(5,R);
-	max1.MAX7219_writeData(1,E);
+	max1.MAX7219_writeData(1,SMALL_E);
 	
 	//second 4-7 segment display from left to right
 	max1.MAX7219_writeData(4,H);
-	max1.MAX7219_writeData(8,E);
-	max1.MAX7219_writeData(6,A);
+	max1.MAX7219_writeData(8,SMALL_E);
+	max1.MAX7219_writeData(6,SMALL_A);
 	max1.MAX7219_writeData(2,t);
 }
 
